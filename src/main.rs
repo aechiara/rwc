@@ -15,12 +15,12 @@ fn main() {
     // check if file exists
     let file_path = std::path::Path::new(file_path);
     if !file_path.is_file() || !file_path.exists() {
-        println!("File [{file_path}] not found");
+        println!("File [{}] not found", file_path.file_name().unwrap().to_str().unwrap());
         return;
     }
 
     let file_content = std::fs::read_to_string(file_path).expect("Should be able to read the file");
     let total_lines: u32 = file_content.lines().count() as u32;
 
-    println!("{file_path} has {total_lines} lines");
+    println!("{} has {total_lines} lines", file_path.file_name().unwrap().to_str().unwrap());
 }
